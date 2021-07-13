@@ -8,6 +8,7 @@ import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAILURE,
+  USER_LOGOUT,
 } from "./../types/user";
 import { registerUserAPI, loginUserAPI, userMeAPI } from "./../services/user";
 import { toast } from "react-toastify";
@@ -21,7 +22,7 @@ export function registerUser(data, history) {
       dispatch({ type: REGISTER_USER_SUCCESS });
       toast(user.data?.message);
       setTimeout(() => {
-        history.push("/");
+        history.push("/login");
       }, 2000);
     } catch (error) {
       const { response } = error;
@@ -38,6 +39,7 @@ export function loginUser(data, history) {
     try {
       const user = await loginUserAPI(data);
       console.log(user);
+      localStorage.setItem("jwtToken", JSON.stringify(user.data?.token));
       dispatch({ type: LOGIN_USER_SUCCESS });
       toast(user.data?.message);
       setTimeout(() => {
@@ -64,5 +66,12 @@ export function getUserProfile() {
       console.error(response);
       dispatch({ type: USER_PROFILE_FAILURE, payload: response?.data });
     }
+  };
+}
+
+export function logoutUser() {
+  return (dispatch) => {
+    localStorage.removeItem("jwtToken");
+    dispatch({ type: USER_LOGOUT });
   };
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserProfile } from "../redux/actions/user";
+import { getUserProfile, logoutUser } from "../redux/actions/user";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -11,14 +11,16 @@ const Home = () => {
   }, [dispatch]);
 
   const handleLogout = (id) => {
-    const result = window.confirm("Are you sure to delete this user?");
+    const result = window.confirm("Are you sure to logout?");
     if (result) {
+      dispatch(logoutUser());
     }
   };
 
   return (
-    <div className="container">
-      <h1 className="text-center">Home</h1>
+    <div className="container text-center">
+      <h1>Hi {user?.name}!</h1>
+      <p>You're logged in with React Hooks!!</p>
       <button className="btn btn-primary ml-auto" onClick={handleLogout}>
         Logout
       </button>

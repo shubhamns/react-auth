@@ -8,6 +8,7 @@ import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAILURE,
+  USER_LOGOUT,
 } from "./../types/user";
 
 const initialState = {
@@ -61,6 +62,12 @@ export function user(state = initialState, action) {
     case USER_PROFILE_FAILURE:
       return {
         ...state,
+      };
+
+    case USER_LOGOUT:
+      return {
+        ...state,
+        user: null,
       };
 
     default:

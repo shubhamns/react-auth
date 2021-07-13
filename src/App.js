@@ -1,7 +1,9 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import store from "./store/store";
+import { persistor } from "./store/store";
 import Routes from "./routes/routes";
 
 const CloseButton = ({ closeToast }) => (
@@ -17,8 +19,11 @@ function App() {
         hideProgressBar={false}
         closeButton={<CloseButton />}
       />
+
       <Provider store={store}>
-        <Routes />
+        <PersistGate loading={null} persistor={persistor}>
+          <Routes />
+        </PersistGate>
       </Provider>
     </div>
   );
