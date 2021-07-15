@@ -8,7 +8,9 @@ const middleware = [thunk];
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage: storage,
+  // whitelist: ["user"],
+  blacklist: ["user"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -20,7 +22,7 @@ const store = createStore(
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
- 
+
 export const persistor = persistStore(store);
 
 export default store;

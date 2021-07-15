@@ -1,10 +1,13 @@
 import React from "react";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store from "./store/store";
 import { persistor } from "./store/store";
 import Routes from "./routes/routes";
+import Loader from "./components/Loader";
 
 const CloseButton = ({ closeToast }) => (
   <i onClick={closeToast} className="la la-close notifications-close" />
@@ -21,8 +24,10 @@ function App() {
       />
 
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Routes />
+        <PersistGate loading={<Loader />} persistor={persistor}>
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
         </PersistGate>
       </Provider>
     </div>

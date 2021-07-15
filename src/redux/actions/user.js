@@ -59,7 +59,7 @@ export function getUserProfile() {
     dispatch({ type: USER_PROFILE_REQUEST });
     try {
       const user = await userMeAPI();
-      console.log(user);
+      console.log("user", user);
       dispatch({ type: USER_PROFILE_SUCCESS, payload: user.data.response });
     } catch (error) {
       const { response } = error;
@@ -69,9 +69,10 @@ export function getUserProfile() {
   };
 }
 
-export function logoutUser() {
+export function logoutUser(history) {
   return (dispatch) => {
     localStorage.removeItem("jwtToken");
     dispatch({ type: USER_LOGOUT });
+    history.push("/login");
   };
 }
