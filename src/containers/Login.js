@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../redux/actions/user";
 
@@ -114,6 +114,9 @@ const Login = () => {
                 alt="loading"
               />
             )}
+          </div>
+          <div className="text-center text-bold">
+            <Link to={"/register"}>Register Here</Link>
           </div>
         </form>
       </div>
