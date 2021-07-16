@@ -8,7 +8,6 @@ import {
 import Home from "../containers/Home";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
-
 import PrivateRoute from "./../commons/PrivateRoute";
 
 const Routers = () => {
