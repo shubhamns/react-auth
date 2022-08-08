@@ -5,10 +5,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Home from "../containers/Home";
-import Register from "../containers/Register";
-import Login from "../containers/Login";
-import PrivateRoute from "./../commons/PrivateRoute";
+import Home from "../pages/Home";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const Routers = () => {
   return (
